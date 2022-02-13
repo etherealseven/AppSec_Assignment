@@ -159,6 +159,14 @@ namespace Assignment
             var dob = HttpUtility.HtmlEncode(dob_tb.Text);
             int scores = checkPassword(password);
             string status = "";
+            bool checkFname = false;
+            bool checkLname = false;
+            bool checkCC = false;
+            bool checkEmail = false;
+            bool checkDOB = false;
+            bool checkImage = false;
+            bool checkPW = false;
+
 
             switch (scores)
             {
@@ -181,54 +189,116 @@ namespace Assignment
                     break;
             }
 
+
             lbl_pwdchecker.Text = "Status: " + status;
-            if (scores < 5)
-            {
-                lbl_pwdchecker.ForeColor = Color.Red;
-                return;
-            }
+
 
             if (fname.Length == 0)
             {
                 lbl_fname.Text = "First name is required";
                 lbl_fname.ForeColor = Color.Red;
+                checkFname = false;
             }
-            else if (lname.Length == 0)
+            else if (fname.Length > 0)
+            {
+                lbl_fname.Text = "Valid!";
+                lbl_fname.ForeColor = Color.Green;
+                checkFname = true;
+            }
+            if (lname.Length == 0)
             {
                 lbl_lname.Text = "Last name is required";
                 lbl_lname.ForeColor = Color.Red;
+                checkLname = false;
             }
-            else if (cc.Length == 0)
+            else if (lname.Length > 0)
+            {
+                lbl_lname.Text = "Valid!";
+                lbl_lname.ForeColor = Color.Green;
+                checkLname = true;
+            }
+
+            if (cc.Length == 0)
             {
                 lbl_cc.Text = "Credit card number is required";
                 lbl_cc.ForeColor = Color.Red;
+                checkCC = false;
             }
             else if (cc.Length < 16 || creditcard_tb.Text.ToString().Trim().Length > 16)
             {
                 lbl_cc.Text = "Invalid credit card number!";
                 lbl_cc.ForeColor = Color.Red;
+                checkCC = false;
             }
-            else if (email.Length == 0)
+            else if (cc.Length == 16)
+            {
+                lbl_cc.Text = "Valid!";
+                lbl_cc.ForeColor = Color.Green;
+                checkCC = true;
+            }
+
+            if (email.Length == 0)
             {
                 lbl_email.Text = "Email is required";
                 lbl_email.ForeColor = Color.Red;
+                checkEmail = false;
             }
-            else if (Regex.IsMatch(email, @"/^\w+[\+\.\w-]*@([\w-]+\.)*\w+[\w-]*\.([a-z]{2,4}|\d+)$/i"))
+            else if (Regex.IsMatch(email, @"/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/"))
             {
                 lbl_email.Text = "Invalid email";
                 lbl_email.ForeColor = Color.Red;
+                checkEmail = false;
             }
-            else if (dob.Length == 0)
+            else if (email.Length > 0 && !Regex.IsMatch(email, @"/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/"))
+            {
+                lbl_email.Text = "Valid!";
+                lbl_email.ForeColor = Color.Green;
+                checkEmail = true;
+            }
+
+            if (password.Length == 0)
+            {
+                lbl_pwdchecker.Text = "Password required";
+                lbl_pwdchecker.ForeColor = Color.Red;
+            }
+            if (scores < 5)
+            {
+                lbl_pwdchecker.ForeColor = Color.Red;
+                checkPW = false;
+            }
+            else if (scores == 5)
+            {
+                lbl_pwdchecker.ForeColor = Color.Green;
+                checkPW = true;
+            }
+
+            if (dob.Length == 0)
             {
                 lbl_dob.Text = "Date of birth is required";
                 lbl_dob.ForeColor = Color.Red;
+                checkDOB = false;
             }
-            else if (!FileUpload1.HasFile)
+            else if (dob.Length > 0)
+            {
+                lbl_dob.Text = "Valid!";
+                lbl_dob.ForeColor = Color.Green;
+                checkDOB = true;
+            }
+
+            if (!FileUpload1.HasFile)
             {
                 lbl_image.Text = "Please select an image";
                 lbl_image.ForeColor = Color.Red;
+                checkImage = false;
             }
-            else
+            else if (FileUpload1.HasFile)
+            {
+                lbl_image.Text = "File selected!";
+                lbl_image.ForeColor = Color.Green;
+                checkImage = true;
+            }
+
+            if (checkFname == true && checkLname == true && checkCC == true && checkEmail == true && checkPW == true && checkDOB == true && checkImage == true)
             {
                 RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
                 byte[] saltByte = new byte[8];
@@ -252,6 +322,7 @@ namespace Assignment
                 createAccount();
                 Response.Redirect("Login.aspx");
             }
+               
         }
     }
 }

@@ -71,6 +71,8 @@
     <Content Include="CustomError\HTTP400.html" />
     <Content Include="CustomError\HTTP403.html" />
     <Content Include="CustomError\HTTP404.html" />
+    <Content Include="CustomError\HTTP500.html" />
+    <Content Include="Global.asax" />
     <Content Include="Homepage.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Registration.aspx" />
@@ -83,6 +85,9 @@
     </Compile>
     <Compile Include="ChangePassword.aspx.designer.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Homepage.aspx.cs">
       <DependentUpon>Homepage.aspx</DependentUpon>

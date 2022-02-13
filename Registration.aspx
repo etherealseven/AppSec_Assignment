@@ -135,6 +135,19 @@
             }   
         }
 
+        function validate_image() {
+            var img = document.getElementById('<%=FileUpload1.ClientID%>').value;
+
+            if (img.length == 0) {
+                document.getElementById("lbl_image").innerHTML = "Required";
+                document.getElementById("lbl_image").style.color = "Red";
+            }
+            else {
+                document.getElementById("lbl_image").innerHTML = "Valid!";
+                document.getElementById("lbl_image").style.color = "Green";
+            }
+        }
+
     </script>
 </head>
 <body>
@@ -200,7 +213,7 @@
                 <tr>
                     <td class="auto-style2">Photo</td>
                     <td class="auto-style3">
-                        <asp:FileUpload ID="FileUpload1" runat="server" Width="322px" />
+                        <asp:FileUpload ID="FileUpload1" runat="server" Width="322px" onkeyup="javascript:validate_image()"/>
                     </td>
                     <td>
                         <asp:Label ID="lbl_image" runat="server"></asp:Label>

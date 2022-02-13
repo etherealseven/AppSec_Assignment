@@ -87,7 +87,7 @@
                 <tr>
                     <td class="auto-style4">Old Password</td>
                     <td class="auto-style3">
-                        <asp:TextBox ID="oldpw_tb" runat="server" Width="320px"></asp:TextBox>
+                        <asp:TextBox ID="oldpw_tb" runat="server" Width="320px" TextMode="Password"></asp:TextBox>
                     </td>
                     <td>
                         <asp:Label ID="lbl_oldpw" runat="server"></asp:Label>
@@ -96,7 +96,7 @@
                 <tr>
                     <td class="auto-style4">New Password</td>
                     <td class="auto-style3">
-                        <asp:TextBox ID="newpw_tb" runat="server" Width="320px" onkeyup="javascript:validate_newpassword()"></asp:TextBox>
+                        <asp:TextBox ID="newpw_tb" runat="server" Width="320px" onkeyup="javascript:validate_newpassword()" TextMode="Password"></asp:TextBox>
                     </td>
                     <td>
                         <asp:Label ID="lbl_newpw" runat="server"></asp:Label>
@@ -105,7 +105,7 @@
                 <tr>
                     <td class="auto-style4">Confirm New Password</td>
                     <td class="auto-style3">
-                        <asp:TextBox ID="confirmpw_tb" runat="server" Width="320px" onkeyup="javascript:validate_confirmpassword()"></asp:TextBox>
+                        <asp:TextBox ID="confirmpw_tb" runat="server" Width="320px" onkeyup="javascript:validate_confirmpassword()" TextMode="Password"></asp:TextBox>
                     </td>
                     <td>
                         <asp:Label ID="lbl_confirmpw" runat="server"></asp:Label>

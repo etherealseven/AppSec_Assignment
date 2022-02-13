@@ -19,6 +19,7 @@ namespace Assignment
                 if (!Session["AuthToken"].ToString().Equals(Request.Cookies["AuthToken"].Value))
                 {
                     Response.Redirect("Login.aspx", false);
+                    
                 }
                 else
                 {
@@ -39,7 +40,8 @@ namespace Assignment
             }
             else
             {
-                Response.Redirect("Login.aspx", false);
+                //Response.Redirect("Login.aspx", false);
+                Response.Redirect("~/CustomError/HTTP403.html");
             }
         }
 
